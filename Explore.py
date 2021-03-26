@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class Newscraper(object):
-    def __init__(self, url,letter,class_ = ''):
+    def __init__(self, url,letter,class_):
         self.url = url
         self.letter = letter
         self.class_ = class_
@@ -24,9 +24,9 @@ class Newscraper(object):
 
     def dataframe_collection(self):
         link_list,text_list =  Newscraper.soup_intialisation(self)
-        df = pd.DataFrame(
+        df_keyword = pd.DataFrame(
                 {'Links': link_list,
                  'Text': text_list})
-        df_keyword['Text'] = df_keyword.Text.str.replace('\n ?' , '')
+        df_keyword['Text'] = df_keyword.Text.str.replace('\n' , '')
         df_keyword = df_keyword.drop_duplicates(['Text'], keep='first')
-        return(df_keyword,self.keyword,self.url)
+        return(df_keyword,self.url)
