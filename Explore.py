@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import typing
+
+import link_opener as lo
 
 
 class Newscraper(object):
@@ -10,19 +13,15 @@ class Newscraper(object):
         self.class_ = class_
 
     def soup_intialisation(self):
-        link_list = []
-        text_list = []
-        pd.options.mode.chained_assignment = None  # default='warn'
-        r = requests.get(self.url)
-        soup = BeautifulSoup(r.content,"html.parser")
-        links = soup.find_all(self.letter, class_=self.class_)
+        link_list,text_list = [],[]
+        links = lo.open_link(self.url,self.letter,self.class_)
         for link in links:
             if len(link.text) > 15:
                 link_list.append(link.get('href'))
                 text_list.append((link.text).strip())
         return link_list,text_list
 
-    def dataframe_collection(self):
+    def dataframe_collection(self) :
         link_list,text_list =  Newscraper.soup_intialisation(self)
         df_keyword = pd.DataFrame(
                 {'Links': link_list,
