@@ -1,11 +1,16 @@
-from newspaper import Article
+import pandas as pd
+import warnings
+import requests
 
-url = "https://www.bbc.co.uk/news/uk-scotland-56539696"
+warnings.filterwarnings("ignore")
 
-# download and parse article
-article = Article(url)
-article.download()
-article.parse()
+df = pd.DataFrame(columns=['Link','Text'])
 
-# print article text
-print(article.images)
+link = 'www.bbt.co.uk'
+text= ' I hate this site'
+
+dg = pd.DataFrame(data=[(link,text)],columns=['Link','Text'])
+df = df.append(dg)
+
+
+print(df.head())

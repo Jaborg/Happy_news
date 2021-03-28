@@ -2,22 +2,29 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
+import link_opener as lo
+
+
 def text_extraction(df):
-    for link in list(x['Links']):
+    dg = pd.DataFrame(columns=['Link','Text'])
+    news_errors,sports_errors = 0,0
+    for link in list(df['Links']):
+        print(link)
         if '/news/' in link:
-            c =lo.open_link(link,'div','ssrcss-16rg7hm-ContainerWithSidebarWrapper e1jl38b40')
-            print(link)
             try:
-                print(c[0].text[:100])
+                c = lo.open_link(link,'div','ssrcss-16rg7hm-ContainerWithSidebarWrapper e1jl38b40')
+                bf = pd.DataFrame(data=[(link,c[0].text)],columns=['Link','Text'])
+                dg = dg.append(bf)
             except:
-                print('Not right class')
+                news_errors += 1
         elif '/sport/' in link:
-            c = lo.open_link(link,'div','qa-story-body story-body gel-pica gel-10/12@m gel-7/8@l gs-u-ml0@l gs-u-pb++')
-            print(link)
             try:
-                print(c[0].text[:100])
+                c = lo.open_link(link,'div','qa-story-body story-body gel-pica gel-10/12@m gel-7/8@l gs-u-ml0@l gs-u-pb++')
+                bf = pd.DataFrame(data=[(link,c[0].text)],columns=['Link','Text'])
+                dg = dg.append(bf)
             except:
-                print('Not right class')
+                sports_errors += 1
 
-
-    print('\n')
+    print('No. of news erros: '+ str(news_errors))
+    print('No. of sports erros: '+ str(sports_errors))
+    return dg
