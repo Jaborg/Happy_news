@@ -6,6 +6,7 @@ import typing
 import link_opener as lo
 
 
+
 class Newscraper(object):
     def __init__(self, url,letter,class_):
         self.url = url
