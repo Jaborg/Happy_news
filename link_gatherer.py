@@ -29,4 +29,4 @@ class Newscraper(object):
                  'Text': text_list})
         df_keyword['Text'] = df_keyword.Text.str.replace('\n' , '')
         df_keyword = df_keyword.drop_duplicates(['Text'], keep='first')
-        return(df_keyword,self.url)
+        return(df_keyword)

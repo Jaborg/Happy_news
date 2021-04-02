@@ -1,5 +1,7 @@
 import warnings
 import requests
+from db_utils import db_connect
+
 
 warnings.filterwarnings("ignore", message="Could not import the lzma module.")
 
@@ -12,3 +14,10 @@ bbc_news = e.Newscraper('http://bbc.co.uk','a',
 
 x = bbc_news.dataframe_collection()
 j = bb.text_extraction(x)
+
+
+con = db_connect()  # connect to the database
+cur = con.cursor() # instantiate a cursor obj
+
+
+j.to_sql('links',con)
