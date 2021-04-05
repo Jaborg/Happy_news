@@ -19,5 +19,6 @@ j = bb.text_extraction(x)
 con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
-
-j.to_sql('links',con)
+columns = ['Id','Link','Title']
+x = x.reindex(columns=columns)
+x.to_sql('links',if_exists = 'append',con = con)
