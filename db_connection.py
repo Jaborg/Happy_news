@@ -7,10 +7,12 @@ cur = con.cursor() # instantiate a cursor obj
 
 links_sql = '''
 CREATE TABLE IF NOT EXISTS links(
-    Id integer PRIMARY KEY,
-    Title varchar NOT NULL,
-    Link varchar NOT NULL
+    Id text PRIMARY KEY,
+    Title text NOT NULL,
+    Link text NOT NULL
 )
 '''
 
-cur.execute(links_sql)
+
+query = '''SELECT * FROM links'''
+print(cur.execute(query).fetchall())

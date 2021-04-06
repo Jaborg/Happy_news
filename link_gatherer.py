@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import typing
+from random import randint
 
 import link_opener as lo
 
@@ -28,6 +29,7 @@ class Newscraper(object):
                 {'Link': link_list,
                  'Title': title_list})
         df_keyword['Title'] = df_keyword.Title.str.replace('\n' , '')
-        df_keyword = df_keyword.drop_duplicates(['Title'], keep='first')
-        df_keyword['Id'] = df_keyword['Link'].str[:-5]
-        return(df_keyword)
+        df_keyword['Id'] = df_keyword['Link'].str[-6:]
+        df_keyword = df_keyword.drop_duplicates( ['Id'],keep='first')
+        df_keyword = df_keyword.reindex(columns = ['Id','Title','Link'])
+        return(df_keyword.astype(str))

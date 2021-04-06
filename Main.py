@@ -19,6 +19,8 @@ j = bb.text_extraction(x)
 con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
-columns = ['Id','Link','Title']
-x = x.reindex(columns=columns)
-x.to_sql('links',if_exists = 'append',con = con)
+try:
+    x.to_sql('links',if_exists = 'append',con = con,index=False, index_label='Id')
+# use the generic Exception, both IntegrityError and sqlite3.IntegrityError caused trouble.
+except Exception as e:
+    print("FAILURE TO APPEND: {}".format(e))
