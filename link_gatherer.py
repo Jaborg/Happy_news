@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import typing
-from random import randint
+from datetime import date
 
 import link_opener as lo
 
@@ -31,5 +31,7 @@ class Newscraper(object):
         df_keyword['Title'] = df_keyword.Title.str.replace('\n' , '')
         df_keyword['Id'] = df_keyword['Link'].str[-6:]
         df_keyword = df_keyword.drop_duplicates( ['Id'],keep='first')
-        df_keyword = df_keyword.reindex(columns = ['Id','Title','Link'])
+        today = date.today()
+        df_keyword['Date'] = today.strftime("%d/%m/%Y")
+        df_keyword = df_keyword.reindex(columns = ['Id','Date','Title','Link'])
         return(df_keyword.astype(str))
