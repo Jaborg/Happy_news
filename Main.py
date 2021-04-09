@@ -1,6 +1,7 @@
 import warnings
 import requests
 from db_utils import db_connect
+import db_connection as db
 
 
 warnings.filterwarnings("ignore", message="Could not import the lzma module.")
@@ -19,8 +20,9 @@ j = bb.text_extraction(x)
 con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
-try:
-    x.to_sql('links',if_exists = 'append',con = con,index=False, index_label='Id')
+x.apply(lambda row : db.insert_sql(cur,'links',(row.Id,row.Date,row.Title,row.Link)), axis = 1)
+
+# x.to_sql('links',if_exists = 'append',con = con,index=False, index_label='Id')
+# j.to_sql('texts',if_exists = 'append',con = con,index=False, index_label='Id')
+
 # use the generic Exception, both IntegrityError and sqlite3.IntegrityError caused trouble.
-except Exception as e:
-    print("FAILURE TO APPEND: {}".format(e))
