@@ -13,6 +13,7 @@ def text_extraction(df):
             try:
                 c = lo.open_link(link,'div','ssrcss-16rg7hm-ContainerWithSidebarWrapper e1jl38b40')
                 bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0],c[0].text)],columns=['Id','Text'])
+                bf['Text'] = bf['Text'].str.replace(r"[\"\',]", '')
                 dg = dg.append(bf)
             except:
                 news_errors += 1
@@ -20,6 +21,7 @@ def text_extraction(df):
             try:
                 c = lo.open_link(link,'div','qa-story-body story-body gel-pica gel-10/12@m gel-7/8@l gs-u-ml0@l gs-u-pb++')
                 bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0],c[0].text)],columns=['Id','Text'])
+                bf['Text'] = bf['Text'].str.replace(r"[\"\',]", '')
                 dg = dg.append(bf)
             except:
                 sports_errors += 1
