@@ -17,11 +17,9 @@ x = bbc_news.dataframe_collection()
 j = bb.text_extraction(x)
 
 
-con = db_connect()  # connect to the database
-cur = con.cursor() # instantiate a cursor obj
 
-x.apply(lambda row : db.insert_sql(cur,'links',(row.Id,row.Date,row.Title,row.Link)), axis = 1)
-
+x.apply(lambda row : db.insert_sql('links',('Id,Date,Title,Link'),(row.Id,row.Date,row.Title,row.Link)), axis = 1)
+j.apply(lambda row : db.insert_sql('texts',('Id,Text'),(row.Id,row.Text)),axis=1)
 # x.to_sql('links',if_exists = 'append',con = con,index=False, index_label='Id')
 # j.to_sql('texts',if_exists = 'append',con = con,index=False, index_label='Id')
 

@@ -16,13 +16,19 @@ CREATE TABLE IF NOT EXISTS links(
 text_sql = '''
 CREATE TABLE IF NOT EXISTS texts(
     Id text PRIMARY KEY,
-    Link text NOT NULL,
     Text text NOT NULL
 )
 '''
 
-def insert_sql(curd,table,values):
-    sql = 'INSERT or IGNORE into {table}(Id,Date,Title,Link) VALUES {values};'.format(table=table,values=values)
-    curd.execute(sql)
+def insert_sql(table,columns,values):
+    con = db_connect()  # connect to the database
+    cur = con.cursor() # instantiate a cursor obj
+    sql = '''INSERT or IGNORE into {table}({columns}) VALUES {values};
+                            '''.format(table=table,columns=columns,values=values)
+    print(sql)
+    cur.execute(sql)
+    con.commit()
 
     return
+
+cur.execute(text_sql)
