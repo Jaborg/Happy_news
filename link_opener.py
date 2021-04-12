@@ -14,6 +14,6 @@ def open_link(link,letter,class_):
 dinks = open_link('https://www.bbc.co.uk/sport/football/56635783','div','data-reactid=.1g5chmuof8o.0.0.0.1.$paragraph-3')
 # #x = ' '.join([dink.text for dink in dinks])
 #
-#
+
 #x = dinks[0].text
 print(dinks)
