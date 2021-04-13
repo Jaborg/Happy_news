@@ -9,11 +9,11 @@ def open_link(link,letter,class_):
 
 
 
-# #dinks = open_link('https://www.bbc.co.uk/news/world-latin-america-56693406','div','ssrcss-3z08n3-RichTextContainer e5tfeyi2')
+# # #dinks = open_link('https://www.bbc.co.uk/news/world-latin-america-56693406','div','ssrcss-3z08n3-RichTextContainer e5tfeyi2')
+# #
+# dinks = open_link('https://www.bbc.co.uk/sport/football/56635783','div','data-reactid=.1g5chmuof8o.0.0.0.1.$paragraph-3')
+# # #x = ' '.join([dink.text for dink in dinks])
+# #
 #
-dinks = open_link('https://www.bbc.co.uk/sport/football/56635783','div','data-reactid=.1g5chmuof8o.0.0.0.1.$paragraph-3')
-# #x = ' '.join([dink.text for dink in dinks])
-#
-
-#x = dinks[0].text
-print(dinks)
+# #x = dinks[0].text
+# print(dinks)

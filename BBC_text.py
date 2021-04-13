@@ -9,7 +9,7 @@ def text_transform(t):
 
 def text_extraction(df):
     dg = pd.DataFrame(columns=['Id','Text'])
-    news_errors,sports_errors = 0,0
+    news_errors = 0
     for link in list(df['Link']):
         if '/news/' in link:
             try:
@@ -19,15 +19,6 @@ def text_extraction(df):
                 dg = dg.append(bf)
             except:
                 news_errors += 1
-        elif '/sport/' in link:
-            try:
-                c = lo.open_link(link,'div','qa-story-body story-body gel-pica gel-10/12@m gel-7/8@l gs-u-ml0@l gs-u-pb++')
-                bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0],text_transform(c))],columns=['Id','Text'])
-                bf['Text'] = bf['Text'].str.replace(r"[\"\',]", '')
-                dg = dg.append(bf)
-            except:
-                sports_errors += 1
 
     print('No. of news erros: '+ str(news_errors))
-    print('No. of sports erros: '+ str(sports_errors))
     return dg
