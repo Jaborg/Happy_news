@@ -1,16 +1,25 @@
-import pandas as pd
 import warnings
 import requests
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
 
 warnings.filterwarnings("ignore")
 
-df = pd.DataFrame(columns=['Link','Text'])
+from db_utils import db_connect
 
-link = 'www.bbt.co.uk'
-text= ' I hate this site'
-
-dg = pd.DataFrame(data=[(link,text)],columns=['Link','Text'])
-df = df.append(dg)
+con = db_connect()  # connect to the database
+cur = con.cursor() # instantiate a cursor obj
 
 
-print(df.head())
+sql = 'select text from texts;'
+
+x = cur.execute(sql).fetchall()
+
+text = x[2][0]
+doc = nlp(text)
+
+for token in doc:
+    print (token)
+
+print(doc)

@@ -28,7 +28,7 @@ class Newscraper(object):
         df_keyword = pd.DataFrame(
                 {'Link': link_list,
                  'Title': title_list})
-        df_keyword['Title'] = df_keyword.Title.str.replace(r"[\"\',]", '')
+        df_keyword['Title'] = df_keyword.Title.str.replace(r"[\"\,]", '')
         df_keyword['Id'] = df_keyword['Link'].str[-6:]
         df_keyword = df_keyword.drop_duplicates( ['Id'],keep='first')
         today = date.today()
