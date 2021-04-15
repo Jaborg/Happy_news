@@ -1,6 +1,7 @@
 import warnings
 import requests
 import spacy
+from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -17,9 +18,9 @@ sql = 'select text from texts;'
 x = cur.execute(sql).fetchall()
 
 text = x[2][0]
+nlp.add_pipe('spacytextblob')
 doc = nlp(text)
+do = 'I love you so much we are so great'
+do = nlp(do)
 
-for token in doc:
-    print (token)
-
-print(doc)
+print(do._.polarity)

@@ -1,20 +1,23 @@
+from datetime import date
+from typing import List, Tuple
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import typing
-from datetime import date
+
+
 
 import link_opener as lo
 
 
 
 class Newscraper(object):
-    def __init__(self, url,letter,class_):
+    def __init__(self, url: str, letter: str, class_: str):
         self.url = url
         self.letter = letter
         self.class_ = class_
 
-    def soup_intialisation(self):
+    def soup_intialisation(self) -> tuple([List[str], List[str]]):
         link_list,title_list = [],[]
         links = lo.open_link(self.url,self.letter,self.class_)
         for link in links:
@@ -23,7 +26,7 @@ class Newscraper(object):
                 title_list.append((link.text).strip())
         return link_list,title_list
 
-    def dataframe_collection(self) :
+    def dataframe_collection(self) -> pd.DataFrame :
         link_list,title_list =  Newscraper.soup_intialisation(self)
         df_keyword = pd.DataFrame(
                 {'Link': link_list,

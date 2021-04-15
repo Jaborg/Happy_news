@@ -4,10 +4,10 @@ import pandas as pd
 
 import link_opener as lo
 
-def text_transform(t):
+def text_transform(t : list) -> list:
     return ' '.join([tt.text for tt in t])
 
-def text_extraction(df):
+def text_extraction(df : pd.DataFrame) -> pd.DataFrame:
     dg = pd.DataFrame(columns=['Id','Text'])
     news_errors = 0
     for link in list(df['Link']):

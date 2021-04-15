@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS texts(
 )
 '''
 
-def insert_sql(table,columns,values):
+def insert_sql(table : str ,columns : tuple ,values: tuple) -> None:
     con = db_connect()  # connect to the database
     cur = con.cursor() # instantiate a cursor obj
     sql = '''INSERT or IGNORE into {table}({columns}) VALUES {values};
