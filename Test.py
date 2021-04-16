@@ -13,14 +13,11 @@ con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
 
-sql = 'select text from texts;'
+sql = 'select id,text from texts;'
 
-x = cur.execute(sql).fetchall()
-
-text = x[2][0]
+text = cur.execute(sql).fetchall()
 nlp.add_pipe('spacytextblob')
-doc = nlp(text)
-do = 'I love you so much we are so great'
-do = nlp(do)
 
-print(do._.polarity)
+for lexi in text:
+     doc = nlp(lexi[1])
+     print(lexi,doc._.polarity,len(lexi))
