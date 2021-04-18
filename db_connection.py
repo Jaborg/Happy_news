@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS texts(
 )
 '''
 
+pol_sql = '''
+CREATE TABLE IF NOT EXISTS polarity(
+    Id text PRIMARY KEY,
+    Polarity int NOT NULL,
+    Length int NOT NULL
+)
+'''
+
 def insert_sql(table : str ,columns : tuple ,values: tuple) -> None:
     con = db_connect()  # connect to the database
     cur = con.cursor() # instantiate a cursor obj
@@ -29,3 +37,5 @@ def insert_sql(table : str ,columns : tuple ,values: tuple) -> None:
     con.commit()
 
     return
+
+cur.execute(pol_sql)
