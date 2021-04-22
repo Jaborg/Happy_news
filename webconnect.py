@@ -26,4 +26,4 @@ def get_news():
 
 @app.post("/articles")
 def post_news(db: list):
-    return db
+    return 'Hello'
