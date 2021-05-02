@@ -11,19 +11,32 @@ import link_gatherer as e
 import text_extractor as te
 import polarity_calc as pol
 
-# bbc_news = e.Newscraper('http://bbc.co.uk','a',
-#         'ssrcss-10ivm7i-PromoLink e1f5wbog5')
+bbc_news = e.Newscraper('http://bbc.co.uk','a',
+        'ssrcss-10ivm7i-PromoLink e1f5wbog5')
 
 guard_news = e.Newscraper('https://www.theguardian.com/uk','a',
         'u-faux-block-link__overlay js-headline-text')
 
-main_links = guard_news.dataframe_collection()
-main_links.apply(lambda row : db.insert_sql('links',('Id,Date,Title,Link'),(row.Id,row.Date,row.Title,row.Link)), axis = 1)
+def main_links(news : Object) -> pd.DataFrame:
+    main_links_ = news.dataframe_collection()
+    main_links_.apply(lambda row : db.insert_sql('links',
+                                                ('Id,Date,Title,Link'),(row.Id,row.Date,row.Title,row.Link)), axis = 1)
+    return main_links
 
-extracted_texts = te.text_extraction(main_links,'','article-body-commercial-selector css-79elbk article-body-viewer-selector')
-print(extracted_texts.Text)
+def extracted_texts(links : pd.DataFrame, focus : str, class_ : str) -> pd.DataFrame:
+    extracted_texts = te.text_extraction(links,focus,class_)
+    extracted_texts.apply(lambda row : db.insert_sql('texts',
+                                                    ('Id,Text'),(row.Id,row.Text)),axis=1)
+    return extracted_texts
+
+def polarised_text(links : pd.DataFrame) -> pd.DataFrame:
+    polarised_text = pol.polarity_table(links['Id'].to_list())
+    polarised_text.apply(lambda row : db.insert_sql('polarity',
+                                                   ('Id,Polarity,Length'),(row.Id,row.Polarity,row.Length)), axis = 1)
+    return polarised_text
 
 
+    
 # main_links = bbc_news.dataframe_collection()
 # main_links.apply(lambda row : db.insert_sql('links',('Id,Date,Title,Link'),(row.Id,row.Date,row.Title,row.Link)), axis = 1)
 
@@ -32,3 +45,6 @@ print(extracted_texts.Text)
 #
 # polarised_text = pol.polarity_table(main_links['Id'].to_list())
 # polarised_text.apply(lambda row : db.insert_sql('polarity',('Id,Polarity,Length'),(row.Id,row.Polarity,row.Length)), axis = 1)
+
+
+#extracted_texts = te.text_extraction(main_links,'','article-body-commercial-selector css-79elbk article-body-viewer-selector')
