@@ -17,7 +17,6 @@ cur = con.cursor() # instantiate a cursor obj
 def polarity_table(ids : list) -> pd.DataFrame:
     sql = 'select id,text from texts where id in {ids};'.format(ids=tuple(ids))
     text = cur.execute(sql).fetchall()
-    print(text)
     polarity = pd.DataFrame(columns=['Id','Polarity','Length'])
     for lexi in text:
          doc = nlp(lexi[1])
