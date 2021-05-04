@@ -14,7 +14,8 @@ def text_extraction(df : pd.DataFrame, specify : str, class_ : str) -> pd.DataFr
         if specify in link:
             try:
                 c = lo.open_link(link,'div',class_)
-                bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0],text_transform(c))],columns=['Id','Text'])
+                bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0]
+                                        ,text_transform(c))],columns=['Id','Text'])
                 bf['Text'] = bf['Text'].str.replace(r"[\"\,]", '')
                 dg = dg.append(bf)
             except:
