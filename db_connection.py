@@ -37,5 +37,3 @@ def insert_sql(table : str ,columns : tuple ,values: tuple) -> None:
     con.commit()
 
     return
-
-cur.execute(pol_sql)

@@ -12,7 +12,7 @@ import link_opener as lo
 
 
 class Newscraper(object):
-    def __init__(self, url: str, letter: str, class_: str):
+    def __init__(self, url: str, letter: str, class_: str) -> None:
         self.url = url
         self.letter = letter
         self.class_ = class_
