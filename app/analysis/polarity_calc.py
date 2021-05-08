@@ -8,13 +8,10 @@ nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe('spacytextblob')
 warnings.filterwarnings("ignore")
 
-from db_utils import db_connect
-
-con = db_connect()  # connect to the database
-cur = con.cursor() # instantiate a cursor obj
 
 
-def polarity_table(ids : list) -> pd.DataFrame:
+
+def polarity_table(ids : list , cur : object) -> pd.DataFrame:
     sql = 'select id,text from texts where id in {ids};'.format(ids=tuple(ids))
     text = cur.execute(sql).fetchall()
     polarity = pd.DataFrame(columns=['Id','Polarity','Length'])
