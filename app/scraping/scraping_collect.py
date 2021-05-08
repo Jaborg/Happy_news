@@ -3,11 +3,7 @@ import requests
 warnings.filterwarnings("ignore", message="Could not import the lzma module.")
 import pandas as pd
 
-
-import text_extractor as te
-
-
-
+from app.scraping import text_extractor as te
 
 
 def main_links(news : object , db : object) -> pd.DataFrame:

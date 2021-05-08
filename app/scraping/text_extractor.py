@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-import link_opener as lo
+from app.scraping import link_opener as lo
+
 
 def text_transform(t : list) -> list:
     return ' '.join([tt.text for tt in t])

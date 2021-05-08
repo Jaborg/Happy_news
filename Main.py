@@ -1,8 +1,8 @@
-import app.scraping.scraping_collect as sc
+from app.scraping import scraping_collect as sc
 import app.scraping.link_gatherer as e
 from app.database.db_utils import db_connect
 import app.database.db_connection as db
-import app.analysis.polarity_calc as pol
+from app.analysis import polarity_calc as pol
 
 
 
@@ -20,7 +20,7 @@ guard_news = e.Newscraper('https://www.theguardian.com/uk','a',
 #Scrape of links, extraction of text , polarity assesment , push to SQLite
 def main_():
 
-    bbc_links,guard_links = sc.main_links(bbc_news,db),main_links(guard_news,db)
+    bbc_links,guard_links = sc.main_links(bbc_news,db), sc.main_links(guard_news,db)
 
     bbc_text= sc.extracted_texts(bbc_links,'/news/',
                               'ssrcss-3z08n3-RichTextContainer e5tfeyi2',db)
@@ -28,7 +28,7 @@ def main_():
     guard_text = sc.extracted_texts(guard_links,''
                  ,'article-body-commercial-selector css-79elbk article-body-viewer-selector',db)
 
-    bbc_pol,guard_pol = polarised_text(bbc_links,pol,cur),polarised_text(guard_links,pol,cur)
+    bbc_pol,guard_pol = sc.polarised_text(bbc_links,pol), sc.polarised_text(guard_links,pol)
 
     print('Insertion complete')
 

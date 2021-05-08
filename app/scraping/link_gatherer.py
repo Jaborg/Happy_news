@@ -1,14 +1,11 @@
 from datetime import date
 from typing import List, Tuple
 
-import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import requests
 
-
-
-import link_opener as lo
-
+from app.scraping import link_opener as lo
 
 
 class Newscraper(object):
