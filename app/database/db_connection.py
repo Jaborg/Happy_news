@@ -37,3 +37,6 @@ def insert_sql(table : str ,columns : tuple ,values: tuple) -> None:
     con.commit()
 
     return
+cur.execute(links_sql)
+cur.execute(text_sql)
+cur.execute(pol_sql)

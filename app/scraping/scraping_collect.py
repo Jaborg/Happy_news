@@ -22,8 +22,8 @@ def extracted_texts(links : pd.DataFrame, focus : str, class_ : str, db : object
                                                     ,axis=1)
     return extracted_texts_
 
-def polarised_text(links : pd.DataFrame, pol : object) -> pd.DataFrame:
-    polarised_text_ = pol.polarity_table(links['Id'].to_list())
+def polarised_text(links : pd.DataFrame, pol : object , cur : object, db : object) -> pd.DataFrame:
+    polarised_text_ = pol.polarity_table(links['Id'].to_list(),cur)
     polarised_text_.apply(lambda row : db.insert_sql('polarity',
                                                    ('Id,Polarity,Length')
                                                    ,(row.Id,row.Polarity,row.Length))

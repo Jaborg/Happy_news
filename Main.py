@@ -28,7 +28,8 @@ def main_():
     guard_text = sc.extracted_texts(guard_links,''
                  ,'article-body-commercial-selector css-79elbk article-body-viewer-selector',db)
 
-    bbc_pol,guard_pol = sc.polarised_text(bbc_links,pol), sc.polarised_text(guard_links,pol)
+    bbc_pol,guard_pol = sc.polarised_text(bbc_links,pol,cur,db), sc.polarised_text(guard_links,pol,cur,db)
+    con.close()
 
     print('Insertion complete')
 
