@@ -1,7 +1,7 @@
 # Happy_news
 
 ## Structure
-	'''
+	
 	.
 	├── Main.py
 	├── README.md
@@ -27,8 +27,7 @@
 	├── db_utils.py
 	└── requirements.txt
 
-	'''
-
+	
 ## The why
 
 Happy news aggregator 
