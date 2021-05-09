@@ -10,10 +10,10 @@ con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
 bbc_news = e.Newscraper('http://bbc.co.uk','a',
-        'ssrcss-10ivm7i-PromoLink e1f5wbog5')
+        'ssrcss-10ivm7i-PromoLink e1f5wbog5','BBC')
 
 guard_news = e.Newscraper('https://www.theguardian.com/uk','a',
-        'u-faux-block-link__overlay js-headline-text')
+        'u-faux-block-link__overlay js-headline-text','Guardian')
 
 
 

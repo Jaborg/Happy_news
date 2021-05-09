@@ -9,8 +9,8 @@ from app.scraping import text_extractor as te
 def main_links(news : object , db : object) -> pd.DataFrame:
     main_links_ = news.dataframe_collection()
     main_links_.apply(lambda row : db.insert_sql('links',
-                                                ('Id,Date,Title,Link')
-                                                ,(row.Id,row.Date,row.Title,row.Link))
+                                                ('Id,News,Date,Title,Link')
+                                                ,(row.Id,row.News,row.Date,row.Title,row.Link))
                                                 , axis = 1)
 
     return main_links_
