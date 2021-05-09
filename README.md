@@ -2,6 +2,7 @@
 
 ## Structure
 '''
+.
 ├── Main.py
 ├── README.md
 ├── app
@@ -25,6 +26,7 @@
 ├── db_connection.py
 ├── db_utils.py
 └── requirements.txt
+
 '''
 
 ## The why
