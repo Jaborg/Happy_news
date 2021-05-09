@@ -1,33 +1,33 @@
 # Happy_news
 
 ## Structure
-'''
-.
-├── Main.py
-├── README.md
-├── app
-│   ├── __init__.py
-│   ├── analysis
-│   │   ├── __init__.py
-│   │   └── polarity_calc.py
-│   ├── backend
-│   │   ├── app
-│   │   │   ├── api.py
-│   │   │   └── init.py
-│   │   ├── main.py
-│   │   └── webconnect.py
-│   └── scraping
-│       ├── __init__.py
-│       ├── link_gatherer.py
-│       ├── link_opener.py
-│       ├── scraping_collect.py
-│       └── text_extractor.py
-├── database.sqlite3
-├── db_connection.py
-├── db_utils.py
-└── requirements.txt
+	'''
+	.
+	├── Main.py
+	├── README.md
+	├── app
+	│   ├── __init__.py
+	│   ├── analysis
+	│   │   ├── __init__.py
+	│   │   └── polarity_calc.py
+	│   ├── backend
+	│   │   ├── app
+	│   │   │   ├── api.py
+	│   │   │   └── init.py
+	│   │   ├── main.py
+	│   │   └── webconnect.py
+	│   └── scraping
+	│       ├── __init__.py
+	│       ├── link_gatherer.py
+	│       ├── link_opener.py
+	│       ├── scraping_collect.py
+	│       └── text_extractor.py
+	├── database.sqlite3
+	├── db_connection.py
+	├── db_utils.py
+	└── requirements.txt
 
-'''
+	'''
 
 ## The why
 
