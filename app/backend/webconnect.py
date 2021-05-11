@@ -21,10 +21,11 @@ async def index(request : Request):
     return templates.TemplateResponse("index.html", {"request": request, "news": rows})
 
 
-@app.get("/Title/{title}")
+@app.get("/Text/{id}")
 async def news_detail(request : Request, title):
-    return title
-
+    cur.execute('''select text from texts where id = ? ''',(id,))
+    row = cur.fetchone()
+    return templates.TemplateResponse("text.html", {"request": request, "Text": row})
 # @app.get("/positive_new")
 # def get_news():
 #     return 'yo'

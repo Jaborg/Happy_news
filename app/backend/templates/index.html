@@ -11,6 +11,7 @@
             <table class="ui  striped  table">
                 <tr>
                   <thead>
+                    <th>Id</th>
                     <th>News</th>
                     <th>Date</th>
                     <th>Title</th>
@@ -21,9 +22,10 @@
               <tbody>
                 {% for new in news %}
                 <tr>
+                  <td>{{new.Id}}</td>
                   <td>{{new.News}}</td>
                   <td>{{new.Date}}</td>
-                  <td><a href ="/Title/{{ new.title }}">{{new.title}}</a></td>
+                  <td><a href ="/Text/{{ new.id }}">{{new.title}}<a></td>
                   <td>{{new.link}}</td>
                 </tr>
                 {% endfor %}
