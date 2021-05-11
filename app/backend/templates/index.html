@@ -4,26 +4,34 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
       </head>
-        <table class="ui selectable inverted table">
-          <thead>
-            <tr>
-                <th>Symbol</th>
-                <th>Title</th>
-                <th class="right aligned">View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for new in news %}
-            <tr>
-              <td>{{new.News}}</td>
-              <td>{{new.link}}</td>
-              <td>{{new.title}}</td>
-            </tr>
-            {% endfor %}
+      <body>
 
-        </tbody>
+          <div class = "ui container">
+            <h1>News List</h1>
+            <table class="ui  striped  table">
+                <tr>
+                  <thead>
+                    <th>News</th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Links</th>
 
-  </table>
+                    </thead>
+                </tr>
+              <tbody>
+                {% for new in news %}
+                <tr>
+                  <td>{{new.News}}</td>
+                  <td>{{new.Date}}</td>
+                  <td><a href ="/Title/{{ new.title }}">{{new.title}}</a></td>
+                  <td>{{new.link}}</td>
+                </tr>
+                {% endfor %}
 
+            </tbody>
+
+          </table>
+          </div>
+      </body>
 
 <html>

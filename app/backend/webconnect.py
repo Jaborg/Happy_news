@@ -21,6 +21,9 @@ async def index(request : Request):
     return templates.TemplateResponse("index.html", {"request": request, "news": rows})
 
 
+@app.get("/Title/{title}")
+async def news_detail(request : Request, title):
+    return title
 
 # @app.get("/positive_new")
 # def get_news():
