@@ -17,7 +17,6 @@ templates = Jinja2Templates(directory="templates")
 async def index(request : Request):
     sql = '''select * from links'''
     rows = cur.execute(sql).fetchall()
-    print(sql)
 
     return templates.TemplateResponse("index.html", {"request": request, "news": rows})
 

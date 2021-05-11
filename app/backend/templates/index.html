@@ -1,16 +1,29 @@
 <html>
-    <head>
-        <title>news</title>
-    <head>
-    <body>
-    <table>
-    {% for new in news %}
-    <tr>
-      <td>{{new.link}}</td>
-      <td>{{new.title}}</td>
-    </tr>
-    {% endfor %}
-    <table>
-    <body
+      <head>
+        <title>News</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+      </head>
+        <table class="ui selectable inverted table">
+          <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Title</th>
+                <th class="right aligned">View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for new in news %}
+            <tr>
+              <td>{{new.News}}</td>
+              <td>{{new.link}}</td>
+              <td>{{new.title}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+  </table>
+
 
 <html>
