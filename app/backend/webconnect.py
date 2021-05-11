@@ -1,24 +1,28 @@
-from fastapi import FastAPI
-
-app = FastAPI()
-
-
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import sqlite3
 
+app = FastAPI()
 con = sqlite3.connect(r'/Users/jacob/workspace/data_eng/database.sqlite3')
-cur = con.cursor() # instantiate a cursor obj
+con.row_factory = sqlite3.Row
+cur = con.cursor()
 
-sql = '''select * from links'''
-x = cur.execute(sql).fetchall()
-print(x)
+templates = Jinja2Templates(directory="templates")
 
 
 
 @app.get("/")
-async def root():
-    return {"Hello": "World"}
+async def index(request : Request):
+    sql = '''select * from links'''
+    rows = cur.execute(sql).fetchall()
+    print(sql)
 
-#
+    return templates.TemplateResponse("index.html", {"request": request, "news": rows})
+
+
+
 # @app.get("/positive_new")
 # def get_news():
 #     return 'yo'
