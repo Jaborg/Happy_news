@@ -3,11 +3,25 @@
 new detail
 
     {% block content %}
-    {{ news.Id }}
+    <h1> This is {{news.Id}} </h1>
+    <table class="ui  striped  table">
+        <tr>
+          <thead>
+            <th>Id</th>
+            <th>Polarity</th>
+            <th>Text</th>
 
+            </thead>
+        </tr>
+      <tbody>
+      <tr>
+          <td>{{news.Id}}</td>
+          <td>{{polarity.polarity}}</td>
+          <td>{{news.text}}</td>
 
-    {{ news.Text }}
+      </tr>
 
-    {{polarity.polarity}}
+      </tbody>
+    </table>
 
 {% endblock %}

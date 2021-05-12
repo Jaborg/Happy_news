@@ -27,7 +27,7 @@ async def news_detail(request : Request, id):
     ''',(id,))
     row = cur.fetchone()
 
-    cur.execute('''select polarity from polarity where id = ?
+    cur.execute('''select polarity,length from polarity where id = ?
     ''',((id,)))
 
     pol = cur.fetchone()
