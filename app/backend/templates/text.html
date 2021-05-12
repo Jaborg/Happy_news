@@ -1,6 +1,13 @@
+{% extends "layout.html" %}
+
 new detail
 
-{{ new.Id }}
+    {% block content %}
+    {{ news.Id }}
 
 
-{{ new.Text }}
+    {{ news.Text }}
+
+    {{polarity.polarity}}
+
+{% endblock %}

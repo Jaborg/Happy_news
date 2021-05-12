@@ -23,10 +23,22 @@ async def index(request : Request):
 
 @app.get("/Text/{id}")
 async def news_detail(request : Request, id):
-    cur.execute('''select id,text from texts where id = ?  ''',(id,))
+    cur.execute('''select id,text from texts where id = ?
+    ''',(id,))
     row = cur.fetchone()
 
-    return templates.TemplateResponse("text.html", {"request": request, "new": row})
+    cur.execute('''select polarity from polarity where id = ?
+    ''',((id,)))
+
+    pol = cur.fetchone()
+
+    return templates.TemplateResponse("text.html",
+    {"request": request,
+    "news": row,
+    "polarity" : pol})
+
+
+
 # @app.get("/positive_new")
 # def get_news():
 #     return 'yo'
