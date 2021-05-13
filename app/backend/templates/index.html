@@ -7,7 +7,6 @@
       <body>
           <div class = "ui container">
             <h1>Please donate</h1>
-            <img class="ui large image" src="https://i.4cdn.org/pol/1620854247779s.jpg" >
 
             <table class="ui  striped  table">
                 <tr>
@@ -23,6 +22,7 @@
               <tbody>
                 {% for new in news %}
                 <tr>
+                  <td><img class="ui mini image" src="https://cdn.freelogovectors.net/svg06/bbc-news-logo.svg" ></td>
                   <td>{{new.Id}}</td>
                   <td>{{new.News}}</td>
                   <td>{{new.Date}}</td>
