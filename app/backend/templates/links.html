@@ -11,6 +11,7 @@
             <table class="ui  striped  table">
                 <tr>
                   <thead>
+                    <th>Logo</th>
                     <th>Id</th>
                     <th>News</th>
                     <th>Date</th>
@@ -22,7 +23,7 @@
               <tbody>
                 {% for new in news %}
                 <tr>
-                  <td><img class="ui mini image" src="https://cdn.freelogovectors.net/svg06/bbc-news-logo.svg" ></td>
+                  <td><img class="ui medium image" src="https://img.cinemablend.com/filter:scale/cb/e/6/b/6/c/2/e6b6c2993916958e11ccbf8c673176802dd4e3914a16f80e0f939e49f767737b.jpg?fw=1200" ></td>
                   <td>{{new.Id}}</td>
                   <td>{{new.News}}</td>
                   <td>{{new.Date}}</td>

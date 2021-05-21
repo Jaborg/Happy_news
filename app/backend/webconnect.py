@@ -13,12 +13,24 @@ templates = Jinja2Templates(directory="templates")
 
 
 
+
+
+
+
+@app.get("/front")
+async def index(request : Request):
+
+    return templates.TemplateResponse("frontpage.html", {"request":request})
+
+
+
 @app.get("/")
 async def index(request : Request):
-    sql = '''select * from links'''
+    sql = '''select * from links l inner join polarity p on p.id = l.id where length > 0'''
     rows = cur.execute(sql).fetchall()
 
-    return templates.TemplateResponse("index.html", {"request": request, "news": rows})
+    return templates.TemplateResponse("links.html", {"request": request, "news": rows})
+
 
 
 @app.get("/Text/{id}")
