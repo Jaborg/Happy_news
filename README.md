@@ -1,7 +1,7 @@
 # Happy_news
 
 ## Structure
-	
+
 	.
 	├── Main.py
 	├── README.md
@@ -11,10 +11,16 @@
 	│   │   ├── __init__.py
 	│   │   └── polarity_calc.py
 	│   ├── backend
-	│   │   ├── app
-	│   │   │   ├── api.py
-	│   │   │   └── init.py
+	│   │   ├── data_eng\\database.sqlite3
 	│   │   ├── main.py
+	│   │   ├── static
+	│   │   │   ├── jokes.png
+	│   │   │   └── swan.png
+	│   │   ├── templates
+	│   │   │   ├── frontpage.html
+	│   │   │   ├── layout.html
+	│   │   │   ├── links.html
+	│   │   │   └── text.html
 	│   │   └── webconnect.py
 	│   └── scraping
 	│       ├── __init__.py
@@ -27,10 +33,10 @@
 	├── db_utils.py
 	└── requirements.txt
 
-	
+
 ## The why
 
-Happy news aggregator 
+Happy news aggregator
 
 Congolormerating a plethora of news organisation's articles and their texts.
 
