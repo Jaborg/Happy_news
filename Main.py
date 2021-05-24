@@ -23,7 +23,7 @@ def main_():
     bbc_links,guard_links = sc.main_links(bbc_news,db), sc.main_links(guard_news,db)
 
     bbc_text= sc.extracted_texts(bbc_links,'/news/',
-                              'ssrcss-3z08n3-RichTextContainer e5tfeyi2',db)
+                              'ssrcss-uf6wea-RichTextComponentWrapper e1xue1i84',db)
 
     guard_text = sc.extracted_texts(guard_links,''
                  ,'article-body-commercial-selector css-79elbk article-body-viewer-selector',db)

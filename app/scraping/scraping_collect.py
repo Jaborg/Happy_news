@@ -18,8 +18,8 @@ def main_links(news : object , db : object) -> pd.DataFrame:
 def extracted_texts(links : pd.DataFrame, focus : str, class_ : str, db : object) -> pd.DataFrame:
     extracted_texts_ = te.text_extraction(links,focus,class_)
     extracted_texts_.apply(lambda row : db.insert_sql('texts',
-                                                    ('Id,Text'),(row.Id,row.Text))
-                                                    ,axis=1)
+                                                     ('Id,Text'),(row.Id,row.Text))
+                                                     ,axis=1)
     return extracted_texts_
 
 def polarised_text(links : pd.DataFrame, pol : object , cur : object, db : object) -> pd.DataFrame:

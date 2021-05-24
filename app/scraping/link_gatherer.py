@@ -20,13 +20,11 @@ class Newscraper(object):
         links = lo.open_link(self.url,self.letter,self.class_)
         for link in links:
             if len(link.text) > 15:
-                if self.tag == 'BBC' and link.get('href')[:4] != 'https':
+                if self.tag == 'BBC' and link.get('href')[:4] != 'http':
                     link_list.append('https://www.bbc.co.uk' + link.get('href'))
                 else:
                     link_list.append(link.get('href'))
                 title_list.append((link.text).strip())
-        for link in link_list:
-            print(link)
         return link_list,title_list
 
     def dataframe_collection(self) -> pd.DataFrame :
