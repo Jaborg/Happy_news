@@ -9,8 +9,8 @@ from app.analysis import polarity_calc as pol
 con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
-bbc_news = e.Newscraper('http://bbc.co.uk','a',
-        'ssrcss-10ivm7i-PromoLink e1f5wbog5','BBC')
+bbc_news = e.Newscraper('http://bbc.co.uk/news','a',
+        'gs-c-promo-heading gs-o-faux-block-link__overlay-link gel-pica-bold nw-o-link-split__anchor','BBC')
 
 guard_news = e.Newscraper('https://www.theguardian.com/uk','a',
         'u-faux-block-link__overlay js-headline-text','Guardian')
