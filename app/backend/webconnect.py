@@ -17,7 +17,7 @@ templates = Jinja2Templates(directory="templates")
 
 
 
-@app.get("/front")
+@app.get("/")
 async def index(request : Request):
     sql = '''select count(distinct link) Total,ROUND(avg(polarity),2) Average from links l
                     inner join polarity p on p.id = l.id where length > 0 and News = 'BBC' '''
@@ -35,7 +35,7 @@ async def index(request : Request):
 
 
 
-@app.get("/")
+@app.get("/repository")
 async def index(request : Request):
     sql = '''select * from links l inner join polarity p on p.id = l.id where length > 0'''
     rows = cur.execute(sql).fetchall()
@@ -50,7 +50,7 @@ async def news_detail(request : Request, id):
     ''',(id,))
     row = cur.fetchone()
 
-    cur.execute('''select polarity,length from polarity where id = ?
+    cur.execute('''select ROUND(polarity,2) polarity,length from polarity where id = ?
     ''',((id,)))
 
     pol = cur.fetchone()
