@@ -8,22 +8,23 @@
           <div class = "ui container">
             <h1>Please donate</h1>
 
-            <table class="ui  striped  table">
-                <tr>
-                  <thead>
+            <table class="ui  sortable striped  table">
+              <thead>
+                  <tr>
                     <th>Logo</th>
                     <th>Id</th>
                     <th>News</th>
-                    <th>Date</th>
+                    <th class="sorted descending">Date</th>
                     <th>Title</th>
                     <th>Links</th>
 
-                    </thead>
-                </tr>
+
+                  </tr>
+              </thead>
               <tbody>
                 {% for new in news %}
                 <tr>
-                  <td><img class="ui medium image" src="https://img.cinemablend.com/filter:scale/cb/e/6/b/6/c/2/e6b6c2993916958e11ccbf8c673176802dd4e3914a16f80e0f939e49f767737b.jpg?fw=1200" ></td>
+                  <td><img class="ui medium image" src="https://media0.giphy.com/media/eKNrUbDJuFuaQ1A37p/200w.webp?cid=ecf05e47qaf2471w0lfm691324bh5f7tg5dl2ype2ahyp4ud&rid=200w.webp&ct=g" ></td>
                   <td>{{new.Id}}</td>
                   <td>{{new.News}}</td>
                   <td>{{new.Date}}</td>
