@@ -13,8 +13,7 @@
               <thead>
                   <tr>
                     <th>Logo</th>
-                    <th>Id</th>
-                    <th>News</th>
+                    <th>Organisation</th>
                     <th >Date</th>
                     <th>Title</th>
                     <th>Links</th>
@@ -25,8 +24,13 @@
               <tbody>
                 {% for new in news %}
                 <tr>
-                  <td><img class="ui medium image" src="https://media2.giphy.com/media/oVNG9iFkDJnbO/100.webp?cid=ecf05e47wizkurtbw4shs83wdy25359wwr6lczyeawgrklq5&rid=100.webp&ct=g" ></td>
-                  <td>{{new.Id}}</td>
+                  <td>
+                    {% if new.News == 'BBC' %}
+                    <img class="ui small image" src="https://m.files.bbci.co.uk/modules/bbc-morph-news-waf-page-meta/5.1.0/bbc_news_logo.png" >
+                    {% elif new.News == 'Guardian' %}
+                    <img class="ui small image" src="https://jobs.theguardian.com/getasset/14928961-45c2-4f50-9d05-c150248727e7/" >
+                    {% endif %}
+                  </td>
                   <td>{{new.News}}</td>
                   <td>{{new.Date}}</td>
                   <td><a href ="/Text/{{ new.id }}">{{new.title}}<a></td>
