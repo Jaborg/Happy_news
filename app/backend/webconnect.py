@@ -59,13 +59,3 @@ async def news_detail(request : Request, id):
     {"request": request,
     "news": row,
     "polarity" : pol})
-
-
-
-# @app.get("/positive_new")
-# def get_news():
-#     return 'yo'
-#
-# @app.post("/articles")
-# def post_news(db: list):
-#     return db
