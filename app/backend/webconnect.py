@@ -27,11 +27,16 @@ async def index(request : Request):
                         inner join polarity p on p.id = l.id where length > 0 and News = 'Guardian' '''
     guardian = cur.execute(sql).fetchone()
 
+    sql = '''select count(distinct link) Total,ROUND(avg(polarity),2) Average from links l
+                            inner join polarity p on p.id = l.id where length > 0 and News = 'DailyMail' '''
+    daily = cur.execute(sql).fetchone()
+
 
     return templates.TemplateResponse("frontpage.html",
         {"request":request ,
         "bbc": bbc,
-        "guardian" : guardian})
+        "guardian" : guardian,
+        "daily" : daily})
 
 
 
