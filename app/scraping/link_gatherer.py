@@ -1,9 +1,10 @@
 from datetime import date
 from typing import List, Tuple
-
+import uuid as ud
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
+import re
 
 from app.scraping import link_opener as lo
 
@@ -14,6 +15,7 @@ class Newscraper(object):
         self.letter = letter
         self.class_ = class_
         self.tag = tag
+        self.link_addon = url[:re.search(r".co.uk",url).end()]
 
     def soup_intialisation(self) -> tuple([List[str], List[str]]):
         link_list,title_list = [],[]
@@ -22,14 +24,14 @@ class Newscraper(object):
             if self.letter == 'a':
                 if len(link.text) > 15:
                     if link.get('href')[:4] != 'http':
-                        link_list.append('https://www.bbc.co.uk' + link.get('href'))
+                        link_list.append(self.link_addon + link.get('href'))
                     else:
                         link_list.append(link.get('href'))
                     title_list.append((link.text).strip())
             else:
                 if len(link.a.text) > 15:
-                    if self.tag == 'DailyMail' and link.a.get('href')[:4] != 'http':
-                        link_list.append('https://www.dailymail.co.uk' + link.a.get('href'))
+                    if link.a.get('href')[:4] != 'http':
+                        link_list.append(self.link_addon + link.a.get('href'))
                     else:
                         link_list.append(link.a.get('href'))
                     title_list.append((link.a.text).strip())
@@ -43,7 +45,7 @@ class Newscraper(object):
                  'Title': title_list,
                  'News': self.tag})
         df_keyword['Title'] = df_keyword.Title.str.replace(r"[\"\,]", '')
-        df_keyword['Id'] = df_keyword['Link'].str[-6:]
+        df_keyword['Id'] = [str(ud.uuid4()).replace('-','') for _ in range(len(df_keyword.index))]
         df_keyword = df_keyword.drop_duplicates( ['Id'],keep='first')
         today = date.today()
         df_keyword['Date'] = today.strftime("%d/%m/%Y")
