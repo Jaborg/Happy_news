@@ -6,7 +6,6 @@ from app.analysis import polarity_calc as pol
 
 
 
-print(dailymail.dataframe_collection())
 con = db_connect()  # connect to the database
 cur = con.cursor() # instantiate a cursor obj
 
@@ -25,19 +24,22 @@ dailymail_news = e.Newscraper('https://www.dailymail.co.uk/news/index.html','h2'
 #Scrape of links, extraction of text , polarity assesment , push to SQLite
 def main_():
 
-    bbc_links,guard_links = sc.main_links(bbc_news,db), sc.main_links(guard_news,db)
+    bbc_links,guard_links,daily_links = sc.main_links(bbc_news,db), sc.main_links(guard_news,db),sc.main_links(dailymail_news,db)
 
     bbc_text= sc.extracted_texts(bbc_links,'/news/',
-                              'ssrcss-uf6wea-RichTextComponentWrapper e1xue1i84',db)
+                              'div','ssrcss-uf6wea-RichTextComponentWrapper e1xue1i84',db)
 
-    guard_text = sc.extracted_texts(guard_links,''
-                 ,'article-body-commercial-selector css-79elbk article-body-viewer-selector',db)
+    guard_text = sc.extracted_texts(guard_links,'',
+                 'div','article-body-commercial-selector css-79elbk article-body-viewer-selector',db)
 
-    bbc_pol,guard_pol = sc.polarised_text(bbc_links,pol,cur,db), sc.polarised_text(guard_links,pol,cur,db)
+    daily_text = sc.extracted_texts(daily_links,'',
+                    'p','mol-para-with-font',db)
+
+
+    bbc_pol,guard_pol,dail_pol = sc.polarised_text(bbc_links,pol,cur,db),sc.polarised_text(guard_links,pol,cur,db),sc.polarised_text(daily_links,pol,cur,db)
     con.close()
-
     print('Insertion complete')
 
 
 
-#main_()
+main_()

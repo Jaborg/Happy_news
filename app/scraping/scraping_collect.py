@@ -15,8 +15,8 @@ def main_links(news : object , db : object) -> pd.DataFrame:
 
     return main_links_
 
-def extracted_texts(links : pd.DataFrame, focus : str, class_ : str, db : object) -> pd.DataFrame:
-    extracted_texts_ = te.text_extraction(links,focus,class_)
+def extracted_texts(links : pd.DataFrame, focus : str, letter : str, class_ : str, db : object) -> pd.DataFrame:
+    extracted_texts_ = te.text_extraction(links,focus,letter,class_)
     extracted_texts_.apply(lambda row : db.insert_sql('texts',
                                                      ('Id,Text'),(row.Id,row.Text))
                                                      ,axis=1)

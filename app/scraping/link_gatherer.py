@@ -15,7 +15,7 @@ class Newscraper(object):
         self.letter = letter
         self.class_ = class_
         self.tag = tag
-        self.link_addon = url[:re.search(r".co.uk",url).end()]
+        self.link_addon = url[:re.search(r"uk",url).end()]
 
     def soup_intialisation(self) -> tuple([List[str], List[str]]):
         link_list,title_list = [],[]
