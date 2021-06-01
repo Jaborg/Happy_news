@@ -51,7 +51,7 @@ async def index(request : Request):
 
 @app.get("/Text/{id}")
 async def news_detail(request : Request, id):
-    cur.execute('''select id,text from texts where id = ?
+    cur.execute('''select te.id,title,text from texts te inner join links l on l.id = te.id where te.id = ?
     ''',(id,))
     row = cur.fetchone()
 

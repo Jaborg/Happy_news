@@ -1,25 +1,37 @@
 {% extends "layout.html" %}
 
-new detail
 
     {% block content %}
-    <h1> This is {{news.Id}} </h1>
-    <table class="ui  striped  table">
-        <tr>
-          <thead>
-            <th>Id</th>
-            <th>Polarity</th>
+    <div class="ui top  fixed inverted menu">
+      <div class="ui massive breadcrumb">
+        <a class="section" href="/" style="color:white" >Home</a>
+        <i class="right angle icon divider" style="color:white"></i>
+        <a class="section" href="/repository" style="color:white">Repository</a>
+        <i class="right angle icon divider" style="color:white"></i>
+        <div class="active section" style="color:white" >{{news.Id}}</div>
+      </div>    </div>
+    <br><br><br>
+  <div class="ui borderless main menu" >
+    <br><br><br>
+    <div class="ui text container">
+      <div class="header item">
+        {{news.Title}}
+        </div>
+        <a  class="item"> This text is {{polarity.Length}} words long</a>
+        <a  class="item"> This text is measured at {{polarity.Polarity}} happiness</a>
 
-            </thead>
-        </tr>
-      <tbody>
-      <tr>
-          <td>{{news.Id}}</td>
-          <td>{{polarity.polarity}}</td>
 
-      </tr>
+    </div>
 
-      </tbody>
-    </table>
+  </div>
+  <div class="ui grid">
+  <div class="four wide column">Hello</div>
+  <div class="four wide column"></div>
+  <div class="four wide column"></div>
+  <div class="four wide column"></div>
+</div>
+  <div class="ui text container">
+      <p>{{news.Text}}</p>
+    </div>
 
 {% endblock %}
