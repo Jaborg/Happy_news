@@ -17,7 +17,7 @@ def text_extraction(df : pd.DataFrame, specify : str, letter : str, class_ : str
                 c = lo.open_link(link,letter,class_)
                 bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0]
                                         ,text_transform(c))],columns=['Id','Text'])
-                bf['Text'] = bf['Text'].str.replace(r"[\"\,]", ' )
+                bf['Text'] = bf['Text'].str.replace(r"[\"\,]", '')
                 dg = dg.append(bf)
             except:
                 news_errors += 1
