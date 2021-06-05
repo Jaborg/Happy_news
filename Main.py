@@ -30,7 +30,7 @@ def main_():
                               'div','ssrcss-uf6wea-RichTextComponentWrapper e1xue1i84',db)
 
     guard_text = sc.extracted_texts(guard_links,'',
-                 'div','article-body-commercial-selector css-79elbk article-body-viewer-selector',db)
+                 'div','article-body-commercial-selector article-body-viewer-selector dcr-bjn8wh',db)
 
     daily_text = sc.extracted_texts(daily_links,'',
                     'p','mol-para-with-font',db)

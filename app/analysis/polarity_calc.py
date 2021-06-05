@@ -1,11 +1,17 @@
 import warnings
 import requests
-import spacy
-from spacytextblob.spacytextblob import SpacyTextBlob
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+sia = SentimentIntensityAnalyzer()
 import pandas as pd
 
-nlp = spacy.load("en_core_web_sm")
+import spacy
+from spacytextblob.spacytextblob import SpacyTextBlob
+
+nlp = spacy.load('en_core_web_sm')
 nlp.add_pipe('spacytextblob')
+
+
 warnings.filterwarnings("ignore")
 
 
@@ -16,8 +22,8 @@ def polarity_table(ids : list  , cur : object) -> pd.DataFrame:
     text = cur.execute(sql).fetchall()
     polarity = pd.DataFrame(columns=['Id','Polarity','Length'])
     for lexi in text:
-         doc = nlp(lexi[1])
-         length,pol,id = len([token.text for token in doc]),doc._.polarity,lexi[0]
+         ss = sia.polarity_scores(lexi[1])
+         length,pol,id = len(lexi[1]),ss['compound'],lexi[0]
          polarity_sub = pd.DataFrame(data=[(id,pol,length)],columns=['Id','Polarity','Length'])
          polarity = polarity.append(polarity_sub)
     return polarity
