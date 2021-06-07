@@ -2,14 +2,15 @@ import warnings
 import requests
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-sia = SentimentIntensityAnalyzer()
 import pandas as pd
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
-import spacy
-from spacytextblob.spacytextblob import SpacyTextBlob
+import matplotlib.pyplot as plt
 
-nlp = spacy.load('en_core_web_sm')
-nlp.add_pipe('spacytextblob')
+
+sia = SentimentIntensityAnalyzer()
+
 
 
 warnings.filterwarnings("ignore")
