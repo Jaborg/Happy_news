@@ -2,7 +2,7 @@ from app.scraping import scraping_collect as sc
 import app.scraping.link_gatherer as e
 from db_utils import db_connect
 import db_connection as db
-from app.analysis import polarity_calc as pol
+from app.analysis import analysis_funcs as pol
 
 
 

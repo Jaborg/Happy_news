@@ -15,7 +15,8 @@ sia = SentimentIntensityAnalyzer()
 
 warnings.filterwarnings("ignore")
 
-
+def word_image_gen(cur : object, id ; str):
+    sql = 'select t'
 
 
 def polarity_table(ids : list  , cur : object) -> pd.DataFrame:
@@ -27,4 +28,5 @@ def polarity_table(ids : list  , cur : object) -> pd.DataFrame:
          length,pol,id = len(lexi[1]),ss['compound'],lexi[0]
          polarity_sub = pd.DataFrame(data=[(id,pol,length)],columns=['Id','Polarity','Length'])
          polarity = polarity.append(polarity_sub)
+    word_image_gen(cur,polarity['Id'].iloc(0)[0])
     return polarity
