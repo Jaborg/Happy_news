@@ -32,7 +32,7 @@ def main_():
     guard_text = sc.extracted_texts(guard_links,'',
                  'div','article-body-commercial-selector article-body-viewer-selector dcr-bjn8wh',db)
 
-    daily_text = sc.extracted_texts(daily_links,'',
+    daily_text = sc.extracted_texts(daily_links,'/news/',
                     'p','mol-para-with-font',db)
 
 

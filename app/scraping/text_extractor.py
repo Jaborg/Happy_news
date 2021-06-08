@@ -18,10 +18,11 @@ def text_extraction(df : pd.DataFrame, specify : str, letter : str, class_ : str
                 c = lo.open_link(link,letter,class_)
                 bf = pd.DataFrame(data=[(df['Id'][df.Link == link].values[0]
                                         ,text_transform(c))],columns=['Id','Text'])
-                bf['Text'] = bf['Text'].map(lambda x: re.sub('[,\.!?]', '', x.lower()))
+                bf['Text'] = bf['Text'].map(lambda x: re.sub('[,\.!?"]', '', x.lower()))
                 dg = dg.append(bf)
             except:
                 news_errors += 1
 
     print('No. of news erros: '+ str(news_errors))
+    print(type(dg))
     return dg
